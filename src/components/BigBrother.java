@@ -1,10 +1,16 @@
 package components;
 
+import java.io.IOException;
+
 public class BigBrother {
     private static BigBrother bigBrotherInst = null;
     private Moked moked;
     private BigBrother(){
-        moked = new Moked();
+        try {
+            moked = new Moked();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public static BigBrother getBigBrotherInst(){
         if (bigBrotherInst == null){
