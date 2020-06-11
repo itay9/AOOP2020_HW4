@@ -54,34 +54,33 @@ public class Moked implements Utilities {
 
     public void giveReport(Vehicle vehicle) {
         try {
-            out.write("time: " + String.valueOf(vehicle.getTimeFromRouteStart()) + ", vehicle number: " + String.valueOf(vehicle.getID()) + ", #" + (++reportCounter));
+            out.write("time: " + String.valueOf(vehicle.getTimeFromRouteStart()) + ", vehicle number: " + String.valueOf(vehicle.getID()) + ", #" + (++reportCounter)+"\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println(reportMSG(vehicle));
     }
 
-
+/*
     public static void main(String[] args) {
-        System.out.println(0);
         Moked moked = null;
         try {
-            System.out.println(1);
             moked = new Moked();
-            System.out.println(2);
         } catch (IOException e) {
             e.printStackTrace();
         }
         Road r;
-        System.out.println(3);
         r = new Road(new Junction(), new Junction());
         Vehicle v = new Vehicle(r);
-
-        moked.giveReport(v);
-        try {
-            moked.out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (int i =0;i<5;i++) {
+            moked.giveReport(v);
         }
+            try {
+                moked.out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
     }
+ */
 }
