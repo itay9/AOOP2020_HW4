@@ -14,6 +14,8 @@ public class Map implements Utilities {
 	private ArrayList<Junction> junctions;
 	private ArrayList<Road> roads;
 	private ArrayList<TrafficLights> lights;
+	JFactory jFactory=new JFactory();
+
 	
 	public Map(int junctionsNum) {
 		junctions=new ArrayList<Junction>();
@@ -22,13 +24,16 @@ public class Map implements Utilities {
 		System.out.println("\n================= CREATING JUNCTIONS=================");
 		//create lighted and non-lighted junctions
 		for (int i=0; i<junctionsNum; i++) {
-			if (getRandomBoolean()) {
-				junctions.add(new Junction());
-			}
-			else {
-				LightedJunction junc=new LightedJunction();
-				junctions.add(junc);
-			}
+			//TODO x variable ********************************
+			String x="city";
+			junctions.add(jFactory.getJunction(x));
+//			if (getRandomBoolean()) {
+//				junctions.add(new Junction());
+//			}
+//			else {
+//				LightedJunction junc=new LightedJunction();
+//				junctions.add(junc);
+//			}
 		}
 		
 		setAllRoads();
