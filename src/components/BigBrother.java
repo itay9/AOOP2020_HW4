@@ -17,16 +17,17 @@ public class BigBrother {
             bigBrotherInst = new BigBrother();}
         return bigBrotherInst;
     }
-    public void speeding(Vehicle vehicle){
+    public void checkSpeeding(Vehicle vehicle){
         RouteParts routePart = vehicle.getCurrentRoutePart();
         if (routePart instanceof Road){
             int maxSpeed = ((Road) routePart).getMaxSpeed();
-            int timeOnCurrentPart = vehicle.getTimeOnCurrentPart();
-            double len = ((Road) routePart).length;
-            if (len/timeOnCurrentPart>maxSpeed){
-                //todo report to Moked for report
-                //todo moked.report(vehicle)
+            if (vehicle.getSpeed()>maxSpeed){
+                moked.giveReport(vehicle);
             }
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }

@@ -277,4 +277,8 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	public void setStop() {
 		stop = true;
 	}
+
+	public int getSpeed() {
+		return speed;
+	}
 }
