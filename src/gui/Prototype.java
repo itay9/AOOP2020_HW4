@@ -30,6 +30,10 @@ public class Prototype {
         vehicles = new ArrayList<Vehicle>();
         vehicles = driving.getVehicles();
     }
+
+    /**
+     * clone obj
+     */
     public void Clone()
     {
         JSlider JunctionsSlider;
