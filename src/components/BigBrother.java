@@ -1,13 +1,16 @@
 package components;
 
+import utilities.Utilities;
+
 import java.io.IOException;
 
-public class BigBrother {
+public class BigBrother implements Utilities {
     private static BigBrother bigBrotherInst = null;
     private Moked moked;
     private BigBrother(){
         try {
             moked = new Moked();
+            successMessage("BigBrother");
         } catch (IOException e) {
             e.printStackTrace();
         }
