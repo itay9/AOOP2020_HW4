@@ -119,7 +119,11 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	public void setStatus(String status) {
 		this.status=status;
 	}
-	
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
 	@Override
 	public void incrementDrivingTime() {
 		timeFromRouteStart++;
@@ -276,5 +280,9 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	@Override
 	public void setStop() {
 		stop = true;
+	}
+
+	public int getSpeed() {
+		return speed;
 	}
 }
