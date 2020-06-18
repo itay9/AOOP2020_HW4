@@ -9,8 +9,11 @@ public class BigBrother implements Utilities {
     private Moked moked;
     private BigBrother(){
         try {
+            //print("1");
             moked = new Moked();
+            //print("2");
             successMessage("BigBrother");
+            //print("3");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,7 +25,9 @@ public class BigBrother implements Utilities {
     }
     public void checkSpeeding(Vehicle vehicle){
         RouteParts routePart = vehicle.getCurrentRoutePart();
+        //print(" speedeing 1");
         if (routePart instanceof Road){
+            //print("speeding 2");
             int maxSpeed = ((Road) routePart).getMaxSpeed();
             if (vehicle.getSpeed()>maxSpeed){
                 moked.giveReport(vehicle);
