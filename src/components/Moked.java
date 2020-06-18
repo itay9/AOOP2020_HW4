@@ -12,6 +12,8 @@ import utilities.Utilities;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -23,6 +25,8 @@ public class Moked implements Utilities {
     private Lock writeLock;
     private FileWriter out; //output
     private File file;
+    private static ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+
     private final String fileName = "reports.txt";
 
     public Moked() throws IOException {
@@ -54,14 +58,17 @@ public class Moked implements Utilities {
 
     public void giveReport(Vehicle vehicle) {
         try {
+            lock.writeLock().lock();
+
             out.write("time: " + String.valueOf(vehicle.getTimeFromRouteStart()) + ", vehicle number: " + String.valueOf(vehicle.getID()) + ", #" + (++reportCounter)+"\n");
+            lock.writeLock().unlock();
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println(reportMSG(vehicle));
     }
 
-/*
+
     public static void main(String[] args) {
         Moked moked = null;
         try {
@@ -82,5 +89,5 @@ public class Moked implements Utilities {
 
             }
     }
- */
+
 }
