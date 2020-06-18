@@ -43,11 +43,13 @@ public class Prototype {
         String []ComboBoxOptions= {"Default","City","Highway"};
         JOptionPane dialogBox =new JOptionPane();
         JDialog dialog = dialogBox.createDialog(simulator, "Create Road System");
-        dialog.setSize(600, 300);
-        JLabel txt1 = new JLabel("Number of Junctions:"), txt2 = new JLabel("Number of Vehicles: "+vehicles.size());
-        JLabel txt3=new JLabel("Choose Mode");
-        JComboBox CityOrRoad=new JComboBox(ComboBoxOptions);
-        dialogBox.setMessage(new Object	[]{ JunctionsSlider, txt2,Index});
+        dialog.setSize(850, 500); //TODO chen adjust the size
+        JLabel txt0 = new JPanel("Please enter values:");
+        JLabel txt1 = new JLabel("enter number of Junctions:");
+        JLabel txt2 = new JLabel("enter number of Vehicles: "+vehicles.size());
+        JLabel txt3=new JLabel("please choose mode (City or Highway)");
+        JComboBox comboBoxCityHighway=new JComboBox(ComboBoxOptions);
+        dialogBox.setMessage(new Object	[]{ JunctionsSlider,txt0,txt1, txt2,txt3,Index});
         dialogBox.setOptionType(JOptionPane.OK_CANCEL_OPTION);
         dialog.setVisible(true);
 
