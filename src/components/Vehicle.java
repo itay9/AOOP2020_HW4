@@ -26,6 +26,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	private boolean threadSuspend = false;
 	private boolean stop = false;
 	private BigBrother bigBrother;
+	private int speed;
 	
 	public Vehicle (Road currentLocation) {// random constructor
 		id=objectsCount++;
@@ -37,6 +38,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 		status=null;
 		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
 		bigBrother = BigBrother.getBigBrotherInst();
+		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.5));
 	}
 	public Vehicle (VehicleType vehicleType) {// random constructor
 		id=objectsCount++;
@@ -128,7 +130,11 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	public void setStatus(String status) {
 		this.status=status;
 	}
-	
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+
 	@Override
 	public void incrementDrivingTime() {
 		timeFromRouteStart++;
@@ -285,5 +291,9 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	@Override
 	public void setStop() {
 		stop = true;
+	}
+
+	public int getSpeed() {
+		return speed;
 	}
 }
