@@ -31,6 +31,11 @@ public class BigBrother implements Utilities {
     }
 
     public static void main(String[] args) {
+        Road r= new Road(new Junction(), new Junction());
+        Vehicle v1 = new Vehicle(r);
+        Vehicle v2 = new Vehicle(r);
+        r.setMaxSpeed(40);
+
 
     }
 }
