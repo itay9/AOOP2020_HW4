@@ -48,7 +48,7 @@ public class Prototype {
         JOptionPane dialogBox =new JOptionPane();
         JDialog dialog = dialogBox.createDialog(simulator, "Create Road System");
         dialog.setSize(850, 500); //TODO chen adjust the size
-        JLabel txt0 = new JPanel("Please enter values:");
+        JLabel txt0 = new JLabel("Please enter values:");
         JLabel txt1 = new JLabel("enter number of Junctions:");
         JLabel txt2 = new JLabel("enter number of Vehicles: "+vehicles.size());
         JLabel txt3=new JLabel("please choose mode (City or Highway)");
