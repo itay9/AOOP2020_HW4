@@ -114,13 +114,16 @@ public class Road implements RouteParts{
 		maxSpeed=speed;
 	}
 
-
+	/**
+	 *
+	 * @param obj vehicle
+	 * @return time to finish raod
+	 */
 	@Override
 	public double calcEstimatedTime(Object obj) {
 		Vehicle v=(Vehicle)obj;
 		//int speed=Math.min(maxSpeed, v.getVehicleType().getAverageSpeed());
-		double speed = v.getVehicleType().getAverageSpeed()*getRandomDouble(0.1,1.5);
-		return (int)length/speed;
+		return (int)(length/v.getSpeed());
 	}
 
 	
