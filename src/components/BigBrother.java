@@ -29,13 +29,20 @@ public class BigBrother implements Utilities {
             }
         }
     }
-
+/*
     public static void main(String[] args) {
         Road r= new Road(new Junction(), new Junction());
         Vehicle v1 = new Vehicle(r);
         Vehicle v2 = new Vehicle(r);
         r.setMaxSpeed(40);
+        v1.setSpeed(30); //driving safe
+        v2.setSpeed(50); // speeding , need to get report
 
+        BigBrother brother = new BigBrother();
+        brother.checkSpeeding(v1);
+        brother.checkSpeeding(v2);
 
     }
+    */
+
 }
