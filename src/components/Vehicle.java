@@ -40,6 +40,17 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 		bigBrother = BigBrother.getBigBrotherInst();
 		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.5));
 	}
+	public Vehicle (VehicleType vehicleType) {// random constructor
+		id=objectsCount++;
+		this.vehicleType=vehicleType;
+		System.out.println();
+		successMessage(this.toString());
+//		currentRoute=new Route(currentLocation, this); //creates a new route for the vehicle and checks it in
+//		lastRoad=currentLocation;
+		status=null;
+		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
+		bigBrother = BigBrother.getBigBrotherInst();
+	}
 	
 	public void calcPositionOnRoad() {
 		Road road=(Road)currentRoutePart;

@@ -1,53 +1,56 @@
-/**
- * 
- */
 package components;
 
 import java.util.ArrayList;
+
 import utilities.Utilities;
 
-/**
- * @author krsof
- *
- */
-public class Map implements Utilities {
+public class CityBuilder implements Utilities{
+	private ArrayList<Vehicle> vehicles;
 	private ArrayList<Junction> junctions;
 	private ArrayList<Road> roads;
 	private ArrayList<TrafficLights> lights;
+	private JFactory jFactory=new JFactory();
+	public Factory factory=new Factory();
+	public static final int NUMOFJUNC=12;
+	public static final String CITY="city";
+	public static final int[] WHEELS= {2,4,10};
+	public static final String[] TYPE= {"fast","slow","private","work","public"};
 
 	
-	public Map(int junctionsNum) {
+	public CityBuilder(int numOfVehicles) {
 		junctions=new ArrayList<Junction>();
 		roads=new ArrayList<Road>();
 		lights=new ArrayList<TrafficLights>();
 		System.out.println("\n================= CREATING JUNCTIONS=================");
-		//create lighted and non-lighted junctions
-		for (int i=0; i<junctionsNum; i++) {
-			if (getRandomBoolean()) {
-				junctions.add(new Junction());
-			}
-			else {
-				LightedJunction junc=new LightedJunction();
-				junctions.add(junc);
-			}
+		for (int i=0; i<NUMOFJUNC; i++) {
+			junctions.add(jFactory.getJunction(CITY));
 		}
-		
 		setAllRoads();
 		turnLightsOn();
+		System.out.println("\n================= CREATING VEHICLES =================");
+		while(vehicles.size()<numOfVehicles) {
+			Road temp=getRoads().get(getRandomInt(0,getRoads().size()));//random road from the map
+			if( temp.getEnabled()) {
+				int numOfWheels=WHEELS[getRandomInt(0,WHEELS.length)];
+				String type=TYPE[getRandomInt(0,TYPE.length)];
+				while (type==null || type=="work")
+					type=TYPE[getRandomInt(0,TYPE.length)];
+				vehicles.add(factory.getFactory(numOfWheels).getVehicle(type));
+//				vehicles.add(new Vehicle(temp));
+			}
+
+		}
 		System.out.println("\n================= GAME MAP HAS BEEN CREATED =================\n");
 	
-		
 	}
 	public void turnLightsOn() {
 		System.out.println("\n================= TRAFFIC LIGHTS TURN ON =================");
 
 		for (Junction junction: junctions) {
-			if (junction instanceof LightedJunction) {
-				LightedJunction junc=(LightedJunction)junction;
-				junc.getLights().setTrafficLightsOn(getRandomBoolean());
-				if (junc.getLights().getTrafficLightsOn()) {
-					lights.add(junc.getLights());
-				}
+			LightedJunction junc=(LightedJunction)junction;
+			junc.getLights().setTrafficLightsOn(getRandomBoolean());
+			if (junc.getLights().getTrafficLightsOn()) {
+				lights.add(junc.getLights());
 			}
 		}
 	}
@@ -66,8 +69,6 @@ public class Map implements Utilities {
 			}
 		}
 	}
-	
-	
 	public ArrayList<Junction>getJunctions(){
 		return junctions;
 	}
@@ -82,7 +83,7 @@ public class Map implements Utilities {
 	
 	@Override
 	public String toString() {
-		return new String("Map: " +this.getJunctions().size()+" junctions, "+this.getRoads().size()+" roads." );
+		return new String(CITY+" Map: " +this.getJunctions().size()+" junctions, "+this.getRoads().size()+" roads." );
 	}
 	/**
 	 * @param junctions the junctions to set
@@ -102,4 +103,5 @@ public class Map implements Utilities {
 	public void setLights(ArrayList<TrafficLights> lights) {
 		this.lights = lights;
 	}
+
 }
