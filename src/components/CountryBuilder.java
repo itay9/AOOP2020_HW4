@@ -1,42 +1,44 @@
-/**
- * 
- */
 package components;
 
 import java.util.ArrayList;
 import utilities.Utilities;
 
-/**
- * @author krsof
- *
- */
-public class Map implements Utilities {
+
+public class CountryBuilder implements Utilities{
+	private ArrayList<Vehicle> vehicles;
 	private ArrayList<Junction> junctions;
 	private ArrayList<Road> roads;
 	private ArrayList<TrafficLights> lights;
+	private JFactory jFactory=new JFactory();
+	public Factory factory=new Factory();
+	public static final int NUMOFJUNC=6;
+	public static final String COUNTRY="country";
+	public static final int[] WHEELS= {2,4,10};
+	public static final String[] TYPE= {"fast","slow","private","work","public"};
 
-	
-	public Map(int junctionsNum) {
+	public CountryBuilder(int numOfVehicles) {
 		junctions=new ArrayList<Junction>();
 		roads=new ArrayList<Road>();
 		lights=new ArrayList<TrafficLights>();
 		System.out.println("\n================= CREATING JUNCTIONS=================");
-		//create lighted and non-lighted junctions
-		for (int i=0; i<junctionsNum; i++) {
-			if (getRandomBoolean()) {
-				junctions.add(new Junction());
-			}
-			else {
-				LightedJunction junc=new LightedJunction();
-				junctions.add(junc);
-			}
+		for (int i=0; i<NUMOFJUNC; i++) {
+			junctions.add(jFactory.getJunction(COUNTRY));
 		}
-		
 		setAllRoads();
 		turnLightsOn();
+		System.out.println("\n================= CREATING VEHICLES =================");
+		while(vehicles.size()<numOfVehicles) {
+			Road temp=getRoads().get(getRandomInt(0,getRoads().size()));//random road from the map
+			if( temp.getEnabled()) {
+				int numOfWheels=WHEELS[getRandomInt(0,WHEELS.length)];
+				String type=TYPE[getRandomInt(0,TYPE.length)];
+				while (type==null || type=="slow" || (numOfWheels==10 && type=="public"))
+					type=TYPE[getRandomInt(0,TYPE.length)];
+				vehicles.add(factory.getFactory(numOfWheels).getVehicle(type));
+//				vehicles.add(new Vehicle(temp));
+			}
 		System.out.println("\n================= GAME MAP HAS BEEN CREATED =================\n");
 	
-		
 	}
 	public void turnLightsOn() {
 		System.out.println("\n================= TRAFFIC LIGHTS TURN ON =================");
@@ -60,14 +62,11 @@ public class Map implements Utilities {
 					
 					continue;
 				}
-				roads.add(new Road(junctions.get(i), junctions.get(j)));
-				
-					
+				if(getRandomBoolean())//not all the junction are connected
+					roads.add(new Road(junctions.get(i), junctions.get(j)));
 			}
 		}
 	}
-	
-	
 	public ArrayList<Junction>getJunctions(){
 		return junctions;
 	}
@@ -82,7 +81,7 @@ public class Map implements Utilities {
 	
 	@Override
 	public String toString() {
-		return new String("Map: " +this.getJunctions().size()+" junctions, "+this.getRoads().size()+" roads." );
+		return new String(COUNTRY+" Map: " +this.getJunctions().size()+" junctions, "+this.getRoads().size()+" roads." );
 	}
 	/**
 	 * @param junctions the junctions to set
@@ -102,4 +101,5 @@ public class Map implements Utilities {
 	public void setLights(ArrayList<TrafficLights> lights) {
 		this.lights = lights;
 	}
+
 }
