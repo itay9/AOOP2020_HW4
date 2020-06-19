@@ -188,4 +188,7 @@ public class RoadSystemPanel extends JPanel implements ActionListener {
 		info();
    }
 
+	public Driving getDriving() {
+		return driving;
+	}
 }

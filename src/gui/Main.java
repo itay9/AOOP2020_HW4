@@ -1,5 +1,7 @@
 package gui;
 
+import components.Vehicle;
+
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
@@ -124,7 +126,8 @@ public class Main extends JFrame implements ActionListener {
 	}
 	
 	public void CloneCar() {
-		//TODO: clone a car button
+		//TODO: panel to choose car ID for cloning
+		Vehicle vehicle = panel
 	}
 	
 	public void Reports() {
