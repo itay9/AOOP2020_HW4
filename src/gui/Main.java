@@ -127,7 +127,9 @@ public class Main extends JFrame implements ActionListener {
 	
 	public void CloneCar() {
 		//TODO: panel to choose car ID for cloning
-		Vehicle vehicle = panel
+		int index; //
+		Vehicle vehicle = panel.getDriving().getVehicles().get(index).clone();
+		panel.getDriving().
 	}
 	
 	public void Reports() {
