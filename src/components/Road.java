@@ -151,8 +151,6 @@ public class Road implements RouteParts{
 		System.out.println("- has finished "+ this+ ", time spent on the road: "+vehicle.getTimeOnCurrentPart()+".");
 		bigBrother.checkSpeeding(vehicle); //check speeding
 		addVehicleToWaitingVehicles(vehicle);
-		//todo give speed to "big brother"
-
 	}
 
 	@Override
