@@ -21,6 +21,8 @@ public class Road implements RouteParts{
 	VehicleType [] vehicleTypes;
 	double length;
 	boolean enable;
+	BigBrother bigBrother = new BigBrother();
+
 	
 	public Road(Junction start, Junction end) {
 		startJunction=start;
@@ -147,6 +149,7 @@ public class Road implements RouteParts{
 	@Override
 	public synchronized void checkOut(Vehicle vehicle) {
 		System.out.println("- has finished "+ this+ ", time spent on the road: "+vehicle.getTimeOnCurrentPart()+".");
+		bigBrother.checkSpeeding(vehicle); //check speeding
 		addVehicleToWaitingVehicles(vehicle);
 		//todo give speed to "big brother"
 
