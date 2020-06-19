@@ -22,7 +22,6 @@ public class Driving implements Utilities, Timer, Runnable{
 	private JPanel panel;
 	private boolean threadSuspend = false;
 	private boolean stop = false;
-	Factory factory=new Factory();
 	public Driving(int junctionsNum, int numOfVehicles) {
 		vehicles=new ArrayList<Vehicle>();
 		allTimedElements=new ArrayList<Timer>();
@@ -33,7 +32,6 @@ public class Driving implements Utilities, Timer, Runnable{
 			Road temp=map.getRoads().get(getRandomInt(0,map.getRoads().size()));//random road from the map
 			if( temp.getEnabled())
 				vehicles.add(new Vehicle(temp));
-//				vehicles.add(factory.getFactory(2).getVehicle("fast"));
 
 		}
 		allTimedElements.addAll(vehicles);
