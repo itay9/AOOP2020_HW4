@@ -7,7 +7,7 @@ import java.io.IOException;
 public class BigBrother implements Utilities {
     private static BigBrother bigBrotherInst = null;
     private Moked moked;
-    private BigBrother(){
+    public BigBrother(){
         try {
             //print("1");
             moked = new Moked();

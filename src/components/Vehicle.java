@@ -296,4 +296,23 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	public int getSpeed() {
 		return speed;
 	}
+
+	/**
+	 * clone this Vehicle
+	 * @return clone of THIS vehicle
+	 */
+	@Override
+	public Vehicle clone(){
+		Vehicle cloneVehivle = new Vehicle(this.getLastRoad());
+		cloneVehivle.setVehicleType(this.getVehicleType());
+		cloneVehivle.updateSpeed();
+		return cloneVehivle;
+	}
+
+	/**
+	 * update speed for the vehicle to make sure the clone() method
+	 */
+	private void updateSpeed(){
+		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.5));
+	}
 }
