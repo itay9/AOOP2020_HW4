@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class Main extends JFrame implements ActionListener {
    private static final long serialVersionUID = 1L;
    private RoadSystemPanel panel;
-   private String[] names = {"Exit","Blue","None","Blue","Magenta","Orange", "Random","Help"};
+   private String[] names = {"Exit","Blue","None","Blue","Magenta","Orange", "Random","Help","Build a map","Clone a car","Reports"};
    private JMenu m1, m2, m3, m4, m5, m6, m7;
    private JMenuItem[] mi;
    private JMenuBar mb;
@@ -44,7 +44,7 @@ public class Main extends JFrame implements ActionListener {
 		    mi[i].addActionListener(this);
 		}
 
-		m1.add(mi[0]);
+		//m1.add(mi[0]);
 
 		m2.add(mi[1]);
 		m2.addSeparator();
@@ -70,15 +70,17 @@ public class Main extends JFrame implements ActionListener {
 //		m7.add(mi[?]);
 		m7.addActionListener(this);
 
-
 		mb.add(m1);
 		mb.add(m2);
 		mb.add(m3);
 		mb.add(m4);
-		mb.add(m5);
-		mb.add(m6);
-		mb.add(m7);
-		
+//		mb.add(m5);
+//		mb.add(m6);
+//		mb.add(m7);
+		mb.add(mi[8]);
+		mb.add(mi[9]);
+		mb.add(mi[10]);
+
 		setJMenuBar(mb);
    }
    
@@ -100,11 +102,11 @@ public class Main extends JFrame implements ActionListener {
 			panel.setColorIndex(3);
 		else if(e.getSource() == mi[7])
 			printHelp();
-		else if(e.getSource() == m5)
+		else if(e.getSource() == mi[8])
 			BuildMap();
-		else if(e.getSource() == m6)
+		else if(e.getSource() == mi[9])
 			CloneCar();
-		else if(e.getSource() == m7)
+		else if(e.getSource() == mi[10])
 			Reports();
 		
 	}
