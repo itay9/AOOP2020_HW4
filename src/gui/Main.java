@@ -1,10 +1,13 @@
 package gui;
 
+import components.Vehicle;
+
 import javax.swing.*;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class Main extends JFrame implements ActionListener {
@@ -30,6 +33,7 @@ public class Main extends JFrame implements ActionListener {
 	    add(panel);
 	    panel.setVisible(true);
 
+
 		mb = new JMenuBar();
 		m1 = new JMenu("File");
 		m2 = new JMenu("Background");
@@ -40,9 +44,9 @@ public class Main extends JFrame implements ActionListener {
 //		m7 = new JMenu("Reports");
 		mi = new JMenuItem[names.length];
 
-		for(int i=0;i<names.length;i++) {
-		    mi[i]=new JMenuItem(names[i]);
-		    mi[i].addActionListener(this);
+		for (int i = 0; i < names.length; i++) {
+			mi[i] = new JMenuItem(names[i]);
+			mi[i].addActionListener(this);
 		}
 
 		m1.add(mi[0]);
@@ -58,7 +62,7 @@ public class Main extends JFrame implements ActionListener {
 		m3.add(mi[5]);
 		m3.addSeparator();
 		m3.add(mi[6]);
-		
+
 		m4.add(mi[7]);
 		
 //		m5.addActionListener(this);
@@ -66,6 +70,7 @@ public class Main extends JFrame implements ActionListener {
 //		m6.addActionListener(this);
 //
 //		m7.addActionListener(this);
+
 
 		mb.add(m1);
 		mb.add(m2);
@@ -77,56 +82,68 @@ public class Main extends JFrame implements ActionListener {
 		mb.add(mi[8]).setPreferredSize(getSize());
 		mb.add(mi[9]).setPreferredSize(getSize());
 		mb.add(mi[10]).setPreferredSize(getSize());
+
 		setJMenuBar(mb);
-   }
-   
+	}
+
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == mi[0])
+		if (e.getSource() == mi[0])
 			destroy();
-		else if(e.getSource() == mi[1])
+		else if (e.getSource() == mi[1])
 			panel.setBackgr(1);
-		else if(e.getSource() == mi[2])
+		else if (e.getSource() == mi[2])
 			panel.setBackgr(0);
-		else if(e.getSource() == mi[3])
+		else if (e.getSource() == mi[3])
 			panel.setColorIndex(0);
-		else if(e.getSource() == mi[4])
+		else if (e.getSource() == mi[4])
 			panel.setColorIndex(1);
-		else if(e.getSource() == mi[5])
+		else if (e.getSource() == mi[5])
 			panel.setColorIndex(2);
-		else if(e.getSource() == mi[6])
+		else if (e.getSource() == mi[6])
 			panel.setColorIndex(3);
-		else if(e.getSource() == mi[7])
+		else if (e.getSource() == mi[7])
 			printHelp();
 		else if(e.getSource() == mi[8])
 			BuildMap();
 		else if(e.getSource() == mi[9])
 			CloneCar();
 		else if(e.getSource() == mi[10])
+
 			Reports();
-		
+
 	}
-	
-	
+
+
 	public void destroy() {
 		System.exit(0);
 	}
-	
-	
+
+
 	public void printHelp() {
 		JOptionPane.showMessageDialog(this, "Home Work 3\nGUI @ Threads");
 	}
-	
+
 	public void BuildMap() {
 		//TODO: build a map button
 	}
-	
+
 	public void CloneCar() {
-		//TODO: clone a car button
-	}
-	
-	public void Reports() {
-		//TODO: report button
+		int index;  //TODO: panel to choose car ID for cloning
+		Vehicle vehicle = panel.getDriving().getVehicles().get(index).clone();
+		panel.getDriving().addVehicle(vehicle); // adding to list of vehivles
 	}
 
+	public void Reports() {
+		Runtime load = Runtime.getRuntime();
+		// todo String file = "C:\\Users\\Almog\\eclipse-workspace\\Roads\\report.txt";
+		//todo chen edit for your file
+		String fileName = "E:\\Programing\\GitHub\\AOOP2020_HW4\\reports.txt";
+		try {
+			Process p = load.exec("notepad " + fileName);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 }
