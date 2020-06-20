@@ -1,6 +1,7 @@
 package gui;
 
 import components.Vehicle;
+import utilities.Utilities;
 
 import javax.swing.*;
 
@@ -10,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
-public class Main extends JFrame implements ActionListener {
+public class Main extends JFrame implements ActionListener, Utilities {
    private static final long serialVersionUID = 1L;
    private RoadSystemPanel panel;
    private String[] names = {"Exit","Blue","None","Blue","Magenta","Orange", "Random","Help","Build a map","Clone a car","Reports"};
@@ -129,7 +130,12 @@ public class Main extends JFrame implements ActionListener {
 	}
 
 	public void CloneCar() {
-		int index=2;  //TODO: panel to choose car ID for cloning
+		int index;
+		String str=JOptionPane.showInputDialog("Input car ID to clone:");
+		index=Integer.parseInt(str);
+		if (index<0 || index>panel.getDriving().getVehicles().size()){ //make sure index is in boundaries
+			index=0;
+		}
 		Vehicle vehicle = panel.getDriving().getVehicles().get(index-1).clone();
 		panel.getDriving().addVehicle(vehicle); // adding to list of vehivles
 		System.out.println("Vehicle "+index + ", Type: "+vehicle.getVehicleType().name()+"  has been cloned");

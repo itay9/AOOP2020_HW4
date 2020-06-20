@@ -32,24 +32,25 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 		id=objectsCount++;
 		vehicleType=currentLocation.getVehicleTypes()[getRandomInt(0,currentLocation.getVehicleTypes().length-1)];
 		System.out.println();
-		successMessage(this.toString());
 		currentRoute=new Route(currentLocation, this); //creates a new route for the vehicle and checks it in
 		lastRoad=currentLocation;
 		status=null;
 		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
 		bigBrother = BigBrother.getBigBrotherInst();
-		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.5));
+		updateSpeed();
+		successMessage(this.toString());
 	}
 	public Vehicle (VehicleType vehicleType) {// random constructor
 		id=objectsCount++;
 		this.vehicleType=vehicleType;
 		System.out.println();
-		successMessage(this.toString());
 //		currentRoute=new Route(currentLocation, this); //creates a new route for the vehicle and checks it in
 //		lastRoad=currentLocation;
 		status=null;
 		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
 		bigBrother = BigBrother.getBigBrotherInst();
+		updateSpeed();
+		successMessage(this.toString());
 	}
 	
 	public void calcPositionOnRoad() {
@@ -155,7 +156,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	
 	@Override
 	public String toString() {
-		return new String("Vehicle "+id+": "+ getVehicleType().name()+", average speed: "+getVehicleType().getAverageSpeed());
+		return new String("Vehicle "+id+": "+ getVehicleType().name()+", speed: "+getSpeed());
 	}
 	
 	@Override
@@ -313,13 +314,14 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	 * update speed for the vehicle to make sure the clone() method
 	 */
 	private void updateSpeed(){
-		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.5));
+		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,6));
+		speed = Math.abs(speed);
 	}
 
     /**
      * same as normal method but for special condition
      */
 	private void updateSpeed30(){
-        speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.3));
+        speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,1.3));
     }
 }
