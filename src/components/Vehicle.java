@@ -155,7 +155,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	
 	@Override
 	public String toString() {
-		return new String("Vehicle "+id+": "+ getVehicleType().name()+", average speed: "+getVehicleType().getAverageSpeed());
+		return new String("Vehicle "+id+": "+ getVehicleType().name()+", speed: "+getSpeed());
 	}
 	
 	@Override
