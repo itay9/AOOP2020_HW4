@@ -51,7 +51,6 @@ public class Main extends JFrame implements ActionListener {
 		m2.addSeparator();
 		m2.add(mi[2]);
 
-
 		m3.add(mi[3]);
 		m3.addSeparator();
 		m3.add(mi[4]);
