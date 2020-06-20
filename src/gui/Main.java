@@ -4,42 +4,44 @@ import components.Vehicle;
 
 import javax.swing.*;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
 public class Main extends JFrame implements ActionListener {
-	private static final long serialVersionUID = 1L;
-	private RoadSystemPanel panel;
-	private String[] names = {"Exit", "Blue", "None", "Blue", "Magenta", "Orange", "Random", "Help"};
-	private JMenu m1, m2, m3, m4, m5, m6, m7;
-	private JMenuItem[] mi;
-	private JMenuBar mb;
+   private static final long serialVersionUID = 1L;
+   private RoadSystemPanel panel;
+   private String[] names = {"Exit","Blue","None","Blue","Magenta","Orange", "Random","Help","Build a map","Clone a car","Reports"};
+   private JMenu m1, m2, m3, m4, m5, m6, m7;
+   private JMenuItem[] mi;
+   private JMenuBar mb;
 
+   
+   public static void main(String[]args) {
+	   Main fr = new Main();
+	   fr.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+	   fr.setSize(845,715);
+	   fr.setVisible(true);
+   }
 
-	public static void main(String[] args) {
-		Main fr = new Main();
-		fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fr.setSize(845, 715);
-		fr.setVisible(true);
-	}
+   
+   public Main() {
+	    super("Road system");
+	    panel = new RoadSystemPanel(this);
+	    add(panel);
+	    panel.setVisible(true);
 
-
-	public Main() {
-		super("Road system");
-		panel = new RoadSystemPanel(this);
-		add(panel);
-		panel.setVisible(true);
 
 		mb = new JMenuBar();
 		m1 = new JMenu("File");
 		m2 = new JMenu("Background");
 		m3 = new JMenu("Vehicles color");
 		m4 = new JMenu("Help");
-		m5 = new JMenu("Build a map");
-		m6 = new JMenu("Clone a car");
-		m7 = new JMenu("Reports");
+//		m5 = new JMenu("Build a map");
+//		m6 = new JMenu("Clone a car");
+//		m7 = new JMenu("Reports");
 		mi = new JMenuItem[names.length];
 
 		for (int i = 0; i < names.length; i++) {
@@ -53,7 +55,6 @@ public class Main extends JFrame implements ActionListener {
 		m2.addSeparator();
 		m2.add(mi[2]);
 
-
 		m3.add(mi[3]);
 		m3.addSeparator();
 		m3.add(mi[4]);
@@ -63,24 +64,24 @@ public class Main extends JFrame implements ActionListener {
 		m3.add(mi[6]);
 
 		m4.add(mi[7]);
-
-//		m5.add(mi[?]);
-		m5.addActionListener(this);
-
-//		m6.add(mi[?]);
-		m6.addActionListener(this);
-
-//		m7.add(mi[?]);
-		m7.addActionListener(this);
+		
+//		m5.addActionListener(this);
+//
+//		m6.addActionListener(this);
+//
+//		m7.addActionListener(this);
 
 
 		mb.add(m1);
 		mb.add(m2);
 		mb.add(m3);
 		mb.add(m4);
-		mb.add(m5);
-		mb.add(m6);
-		mb.add(m7);
+//		mb.add(m5);
+//		mb.add(m6);
+//		mb.add(m7);
+		mb.add(mi[8]).setPreferredSize(getSize());
+		mb.add(mi[9]).setPreferredSize(getSize());
+		mb.add(mi[10]).setPreferredSize(getSize());
 
 		setJMenuBar(mb);
 	}
@@ -103,11 +104,12 @@ public class Main extends JFrame implements ActionListener {
 			panel.setColorIndex(3);
 		else if (e.getSource() == mi[7])
 			printHelp();
-		else if (e.getSource() == m5)
+		else if(e.getSource() == mi[8])
 			BuildMap();
-		else if (e.getSource() == m6)
+		else if(e.getSource() == mi[9])
 			CloneCar();
-		else if (e.getSource() == m7)
+		else if(e.getSource() == mi[10])
+
 			Reports();
 
 	}
