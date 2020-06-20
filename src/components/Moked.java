@@ -29,12 +29,16 @@ public class Moked implements Utilities {
 
     private final String fileName = "reports.txt";
 
-    public Moked() throws IOException {
+    public Moked()  {
         reportCounter = 0;
         readWriteLock = new ReentrantReadWriteLock();
         readLock = readWriteLock.readLock();
         writeLock = readWriteLock.writeLock();
-        out = new FileWriter(fileName);
+        try {
+            out = new FileWriter(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         file = new File(fileName);
         successMessage("moked");
     }
