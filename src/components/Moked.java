@@ -68,7 +68,7 @@ public class Moked implements Utilities {
         System.out.println(reportMSG(vehicle));
     }
 
-/* test
+/*
     public static void main(String[] args) {
         Moked moked = null;
         try {
@@ -89,6 +89,6 @@ public class Moked implements Utilities {
 
             }
     }
-    */
+*/
 
 }
