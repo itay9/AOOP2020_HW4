@@ -5,11 +5,17 @@ package components;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 import utilities.Point;
 import utilities.Timer;
 import utilities.Utilities;
 import utilities.VehicleType;
+
+import javax.swing.event.ChangeListener;
+
+import static com.sun.java.accessibility.util.SwingEventMonitor.addChangeListener;
 
 
 public class Vehicle extends Point implements Utilities, Timer, Runnable { 
@@ -27,6 +33,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	private boolean stop = false;
 	private BigBrother bigBrother;
 	private int speed;
+	private ArrayList<PropertyChangeListener> listener = new ArrayList<PropertyChangeListener>();
 	
 	public Vehicle (Road currentLocation) {// random constructor
 		id=objectsCount++;
@@ -38,6 +45,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
 		bigBrother = BigBrother.getBigBrotherInst();
 		updateSpeed();
+		addChangeListener((ChangeListener) BigBrother.getBigBrotherInst());
 		successMessage(this.toString());
 	}
 	public Vehicle (VehicleType vehicleType) {// random constructor
@@ -319,9 +327,13 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	}
 
     /**
-     * same as normal method but for special condition
+     * same as normal method but for special condition with 30%
      */
 	private void updateSpeed30(){
         speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,1.3));
     }
+
+	public void addChangeListener(PropertyChangeListener newListener) {
+		listener.add(newListener);
+	}
 }
