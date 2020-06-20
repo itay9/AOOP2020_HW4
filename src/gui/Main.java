@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,9 +35,9 @@ public class Main extends JFrame implements ActionListener {
 		m2 = new JMenu("Background");
 		m3 = new JMenu("Vehicles color");
 		m4 = new JMenu("Help");
-		m5 = new JMenu("Build a map");
-		m6 = new JMenu("Clone a car");
-		m7 = new JMenu("Reports");
+//		m5 = new JMenu("Build a map");
+//		m6 = new JMenu("Clone a car");
+//		m7 = new JMenu("Reports");
 		mi = new JMenuItem[names.length];
 
 		for(int i=0;i<names.length;i++) {
@@ -44,7 +45,7 @@ public class Main extends JFrame implements ActionListener {
 		    mi[i].addActionListener(this);
 		}
 
-		//m1.add(mi[0]);
+		m1.add(mi[0]);
 
 		m2.add(mi[1]);
 		m2.addSeparator();
@@ -61,14 +62,11 @@ public class Main extends JFrame implements ActionListener {
 		
 		m4.add(mi[7]);
 		
-//		m5.add(mi[?]);
-		m5.addActionListener(this);
-
-//		m6.add(mi[?]);
-		m6.addActionListener(this);
-
-//		m7.add(mi[?]);
-		m7.addActionListener(this);
+//		m5.addActionListener(this);
+//
+//		m6.addActionListener(this);
+//
+//		m7.addActionListener(this);
 
 		mb.add(m1);
 		mb.add(m2);
@@ -77,10 +75,9 @@ public class Main extends JFrame implements ActionListener {
 //		mb.add(m5);
 //		mb.add(m6);
 //		mb.add(m7);
-		mb.add(mi[8]);
-		mb.add(mi[9]);
-		mb.add(mi[10]);
-
+		mb.add(mi[8]).setPreferredSize(getSize());
+		mb.add(mi[9]).setPreferredSize(getSize());
+		mb.add(mi[10]).setPreferredSize(getSize());
 		setJMenuBar(mb);
    }
    
