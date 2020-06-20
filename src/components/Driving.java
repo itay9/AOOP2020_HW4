@@ -173,4 +173,12 @@ public class Driving implements Utilities, Timer, Runnable{
 	   		timer.setStop();
 	   	stop = true;
 	}
+
+	/**
+	 *
+	 * @param vehicle vehicle to add to the list
+	 */
+	public void addVehicle(Vehicle vehicle){
+		vehicles.add(vehicle);
+	}
 }
