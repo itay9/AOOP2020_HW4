@@ -17,28 +17,29 @@ public class CountryBuilder implements Utilities{
 	public static final String[] TYPE= {"fast","slow","private","work","public"};
 
 	public CountryBuilder(int numOfVehicles) {
-		junctions=new ArrayList<Junction>();
-		roads=new ArrayList<Road>();
-		lights=new ArrayList<TrafficLights>();
+		junctions = new ArrayList<Junction>();
+		roads = new ArrayList<Road>();
+		lights = new ArrayList<TrafficLights>();
 		System.out.println("\n================= CREATING JUNCTIONS=================");
-		for (int i=0; i<NUMOFJUNC; i++) {
+		for (int i = 0; i < NUMOFJUNC; i++) {
 			junctions.add(jFactory.getJunction(COUNTRY));
 		}
 		setAllRoads();
 		turnLightsOn();
 		System.out.println("\n================= CREATING VEHICLES =================");
-		while(vehicles.size()<numOfVehicles) {
-			Road temp=getRoads().get(getRandomInt(0,getRoads().size()));//random road from the map
-			if( temp.getEnabled()) {
-				int numOfWheels=WHEELS[getRandomInt(0,WHEELS.length)];
-				String type=TYPE[getRandomInt(0,TYPE.length)];
-				while (type==null || type=="slow" || (numOfWheels==10 && type=="public"))
-					type=TYPE[getRandomInt(0,TYPE.length)];
+		while (vehicles.size() < numOfVehicles) {
+			Road temp = getRoads().get(getRandomInt(0, getRoads().size()));//random road from the map
+			if (temp.getEnabled()) {
+				int numOfWheels = WHEELS[getRandomInt(0, WHEELS.length)];
+				String type = TYPE[getRandomInt(0, TYPE.length)];
+				while (type == null || type == "slow" || (numOfWheels == 10 && type == "public"))
+					type = TYPE[getRandomInt(0, TYPE.length)];
 				vehicles.add(factory.getFactory(numOfWheels).getVehicle(type));
 //				vehicles.add(new Vehicle(temp));
 			}
-		System.out.println("\n================= GAME MAP HAS BEEN CREATED =================\n");
-	
+			System.out.println("\n================= GAME MAP HAS BEEN CREATED =================\n");
+
+		}
 	}
 	public void turnLightsOn() {
 		System.out.println("\n================= TRAFFIC LIGHTS TURN ON =================");
