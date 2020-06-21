@@ -52,11 +52,11 @@ public class RoadSystemPanel extends JPanel implements ActionListener {
    
    
    public void createNewRoadSystem(int junc, int cars) {
-	    if (driving !=null)
-	    	driving.setStop();
-		driving = new Driving(junc,cars);
-		driving.setPanel(this); 
-		started = false;
+	    if (getDriving() !=null)
+	    	getDriving().setStop();
+		setDriving(new Driving(junc,cars));
+		getDriving().setPanel(this); 
+		setStarted(false);
 		repaint();
    }
    
@@ -64,23 +64,51 @@ public class RoadSystemPanel extends JPanel implements ActionListener {
    public void paintComponent(Graphics g) {
 	   	super.paintComponent(g);	
 	   	
-	   	if (driving==null) return;
+	   	if (getDriving()==null) return;
 	   	int delta = 10;
-   
-	   	Map map = driving.getMap();
-	   		
-	   	for(Road road: map.getRoads()) 
-	   		road.drawRoads(g,delta);
 	   	
-	   	for(Road road: map.getRoads()) 
-	   		road.drawRoadGreenLight(g,delta);
 	   	
-	   	for(Junction junc: map.getJunctions())
-	   		junc.drawJunction(g,delta);
+//	   	Map map = getDriving().getMap();
+//	   	if (map!=null) {	   	
+//		   	for(Road road: map.getRoads()) 
+//		   		road.drawRoads(g,delta);
+//		   	
+//		   	for(Road road: map.getRoads()) 
+//		   		road.drawRoadGreenLight(g,delta);
+//		   	
+//		   	for(Junction junc: map.getJunctions())
+//		   		junc.drawJunction(g,delta);
+//		   	
+//		   	for(Vehicle veh: getDriving().getVehicles()) 
+//		   		veh.drawVehicle(g, delta, colorInd);
+//	   	}
+	   	if (driving.getCountryBuilder()!=null) {
+		   	for(Road road: driving.getCountryBuilder().getRoads()) 
+		   		road.drawRoads(g,delta);
+		   	
+		   	for(Road road: driving.getCountryBuilder().getRoads()) 
+		   		road.drawRoadGreenLight(g,delta);
+		   	
+		   	for(Junction junc: driving.getCountryBuilder().getJunctions())
+		   		junc.drawJunction(g,delta);
+		   	
+		   	for(Vehicle veh: getDriving().getVehicles()) 
+		   		veh.drawVehicle(g, delta, colorInd);
+	   	}
 	   	
-	   	for(Vehicle veh: driving.getVehicles()) 
-	   		veh.drawVehicle(g, delta, colorInd);
-   	
+	   	if (driving.getCityBuilder()!=null) {
+	   	   	for(Road road: driving.getCityBuilder().getRoads()) 
+		   		road.drawRoads(g,delta);
+		   	
+		   	for(Road road: driving.getCityBuilder().getRoads()) 
+		   		road.drawRoadGreenLight(g,delta);
+		   	
+		   	for(Junction junc: driving.getCityBuilder().getJunctions())
+		   		junc.drawJunction(g,delta);
+		   	
+		   	for(Vehicle veh: getDriving().getVehicles()) 
+		   		veh.drawVehicle(g, delta, colorInd);
+	   	}
    }
    
    
@@ -113,29 +141,29 @@ public class RoadSystemPanel extends JPanel implements ActionListener {
    
 
    public void start() {
-	   if (driving == null || started) return;
-	   started = true;
-	   Thread t = new Thread(driving);
+	   if (getDriving() == null || isStarted()) return;
+	   setStarted(true);
+	   Thread t = new Thread(getDriving());
 	   t.start(); 
    }
    
 	public void resume() {
-		if (driving == null) return;
-		driving.setResume();
+		if (getDriving() == null) return;
+		getDriving().setResume();
    }
 
  	public void stop() {
- 		if (driving == null) return;
-	   driving.setSuspend();
+ 		if (getDriving() == null) return;
+	   getDriving().setSuspend();
    }
 
    
    public void info() { 
-	   if (driving == null) return;
+	   if (getDriving() == null) return;
 	   if(isTableVisible == false) {
 		 int i=0;
 		  String[] columnNames = {"Vehicle #", "Type", "Location","Time on loc","Speed"};
-		  ArrayList<Vehicle> vehicles = driving.getVehicles();
+		  ArrayList<Vehicle> vehicles = getDriving().getVehicles();
 	      String [][] data = new String[vehicles.size()][columnNames.length];
 	      for(Vehicle v : vehicles) {
 	    	  data[i][0] = ""+v.getID();
@@ -187,5 +215,25 @@ public class RoadSystemPanel extends JPanel implements ActionListener {
 	else if(e.getSource() == b_num[4])  
 		info();
    }
+
+
+public Driving getDriving() {
+	return driving;
+}
+
+
+public void setDriving(Driving driving) {
+	this.driving = driving;
+}
+
+
+public boolean isStarted() {
+	return started;
+}
+
+
+public void setStarted(boolean started) {
+	this.started = started;
+}
 
 }

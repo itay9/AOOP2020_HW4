@@ -2,6 +2,10 @@ package gui;
 
 import javax.swing.*;
 
+import components.CityBuilder;
+import components.CountryBuilder;
+import components.Driving;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,10 +14,12 @@ import java.awt.event.ActionListener;
 public class Main extends JFrame implements ActionListener {
    private static final long serialVersionUID = 1L;
    private RoadSystemPanel panel;
-   private String[] names = {"Exit","Blue","None","Blue","Magenta","Orange", "Random","Help","Build a map","Clone a car","Reports"};
+   private String[] names = {"Exit","Blue","None","Blue","Magenta","Orange", "Random","Help","City map","Country map","Clone a car","Reports"};
    private JMenu m1, m2, m3, m4, m5, m6, m7;
    private JMenuItem[] mi;
    private JMenuBar mb;
+   private Driving driving = null;
+   private boolean started = false;
 
    
    public static void main(String[]args) {
@@ -35,7 +41,7 @@ public class Main extends JFrame implements ActionListener {
 		m2 = new JMenu("Background");
 		m3 = new JMenu("Vehicles color");
 		m4 = new JMenu("Help");
-//		m5 = new JMenu("Build a map");
+		m5 = new JMenu("Build a map");
 //		m6 = new JMenu("Clone a car");
 //		m7 = new JMenu("Reports");
 		mi = new JMenuItem[names.length];
@@ -61,6 +67,10 @@ public class Main extends JFrame implements ActionListener {
 		
 		m4.add(mi[7]);
 		
+		m5.add(mi[8]);
+		m5.addSeparator();
+		m5.add(mi[9]);
+		
 //		m5.addActionListener(this);
 //
 //		m6.addActionListener(this);
@@ -71,12 +81,12 @@ public class Main extends JFrame implements ActionListener {
 		mb.add(m2);
 		mb.add(m3);
 		mb.add(m4);
-//		mb.add(m5);
+		mb.add(m5);
 //		mb.add(m6);
 //		mb.add(m7);
-		mb.add(mi[8]).setPreferredSize(getSize());
-		mb.add(mi[9]).setPreferredSize(getSize());
+//		mb.add(mi[8]).setPreferredSize(getSize());
 		mb.add(mi[10]).setPreferredSize(getSize());
+		mb.add(mi[11]).setPreferredSize(getSize());
 		setJMenuBar(mb);
    }
    
@@ -99,15 +109,41 @@ public class Main extends JFrame implements ActionListener {
 		else if(e.getSource() == mi[7])
 			printHelp();
 		else if(e.getSource() == mi[8])
-			BuildMap();
+			cityMap();
 		else if(e.getSource() == mi[9])
-			CloneCar();
+			countryMap();
 		else if(e.getSource() == mi[10])
+			CloneCar();
+		else if(e.getSource() == mi[11])
 			Reports();
-		
 	}
 	
 	
+	private void countryMap() {
+		if (panel.getDriving() !=null)
+	    	panel.getDriving().setStop();
+		panel.setDriving(new Driving(new CountryBuilder()));
+		panel.getDriving().setPanel(panel); 
+		panel.setStarted(false);
+		repaint();
+   }
+		// TODO Auto-generated method stub
+		
+	
+
+
+	private void cityMap() {
+		if (panel.getDriving() !=null)
+	    	panel.getDriving().setStop();
+		panel.setDriving(new Driving(new CityBuilder()));
+		panel.getDriving().setPanel(panel); 
+		panel.setStarted(false);
+		repaint();
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	public void destroy() {
 		System.exit(0);
 	}
@@ -122,6 +158,9 @@ public class Main extends JFrame implements ActionListener {
 	}
 	
 	public void CloneCar() {
+		int id=0;
+		String str=JOptionPane.showInputDialog("Input car ID to clone:","0");
+		id=Integer.parseInt(str);
 		//TODO: clone a car button
 	}
 	
