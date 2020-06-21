@@ -148,7 +148,7 @@ public class Main extends JFrame implements ActionListener, Utilities {
 		Runtime load = Runtime.getRuntime();
 		// todo String file = "C:\\Users\\Almog\\eclipse-workspace\\Roads\\report.txt";
 		//todo chen edit for your file
-		String fileName = "E:\\Programing\\GitHub\\AOOP2020_HW4\\reports.txt";
+		String fileName = "reports.txt";
 		try {
 			Process p = load.exec("notepad " + fileName);
 		} catch (IOException e1) {
