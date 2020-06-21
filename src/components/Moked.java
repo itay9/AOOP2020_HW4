@@ -9,6 +9,7 @@ package components;
 import utilities.Point;
 import utilities.Utilities;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -34,12 +35,13 @@ public class Moked implements Utilities {
         readWriteLock = new ReentrantReadWriteLock();
         readLock = readWriteLock.readLock();
         writeLock = readWriteLock.writeLock();
+        file = new File(fileName);
         try {
-            out = new FileWriter(fileName);
+            out = new FileWriter(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        file = new File(fileName);
+
         successMessage("moked");
     }
 
@@ -63,9 +65,10 @@ public class Moked implements Utilities {
     public void giveReport(Vehicle vehicle) {
         try {
             lock.writeLock().lock();
-
+            BufferedWriter out = new BufferedWriter(getOut());
             out.write("time: " + String.valueOf(vehicle.getTimeFromRouteStart()) + ", vehicle number: " + String.valueOf(vehicle.getID()) + ", #" + (++reportCounter)+"\n");
             lock.writeLock().unlock();
+            out.flush(); //just makes sure that any buffered data is written to disk
         } catch (IOException e) {
             e.printStackTrace();
         }

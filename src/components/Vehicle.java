@@ -45,7 +45,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
 		bigBrother = BigBrother.getBigBrotherInst();
 		updateSpeed();
-		addChangeListener((ChangeListener) BigBrother.getBigBrotherInst());
+//		addChangeListener((PropertyChangeListener) BigBrother.getBigBrotherInst());
 		successMessage(this.toString());
 	}
 	public Vehicle (VehicleType vehicleType) {// random constructor
@@ -312,10 +312,11 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	 */
 	@Override
 	public Vehicle clone(){
-		Vehicle cloneVehivle = new Vehicle(this.getLastRoad());
-		cloneVehivle.setVehicleType(this.getVehicleType());
-		cloneVehivle.updateSpeed();
-		return cloneVehivle;
+		Vehicle cloneVehicle = new Vehicle(this.getLastRoad());
+		cloneVehicle.setVehicleType(this.getVehicleType());
+		cloneVehicle.updateSpeed();
+		System.out.println("Vehicle "+this.getID() + ", Type: "+this.getVehicleType().name()+"  has been cloned");
+		return cloneVehicle;
 	}
 
 	/**

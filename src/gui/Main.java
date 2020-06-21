@@ -133,12 +133,15 @@ public class Main extends JFrame implements ActionListener, Utilities {
 		int index;
 		String str=JOptionPane.showInputDialog("Input car ID to clone:");
 		index=Integer.parseInt(str);
-		if (index<0 || index>panel.getDriving().getVehicles().size()){ //make sure index is in boundaries
+		if (index<0 || index>panel.getDriving().getVehicles().size()-1){ //make sure index is in boundaries
+			System.out.println("Error! invalid index! cloning thr first car");
 			index=0;
 		}
-		Vehicle vehicle = panel.getDriving().getVehicles().get(index-1).clone();
+		Vehicle vehicle = panel.getDriving().getVehicles().get(index).clone();
 		panel.getDriving().addVehicle(vehicle); // adding to list of vehivles
-		System.out.println("Vehicle "+index + ", Type: "+vehicle.getVehicleType().name()+"  has been cloned");
+		//fixing clone car not moving
+		Thread thread = new Thread(vehicle);
+		thread.start();
 	}
 
 	public void Reports() {

@@ -22,7 +22,7 @@ public class Driving implements Utilities, Timer, Runnable{
 	private JPanel panel;
 	private boolean threadSuspend = false;
 	private boolean stop = false;
-	private BigBrother bigBrother  = BigBrother.getBigBrotherInst();
+
 	public Driving(int junctionsNum, int numOfVehicles) {
 		vehicles=new ArrayList<Vehicle>();
 		allTimedElements=new ArrayList<Timer>();
@@ -116,9 +116,11 @@ public class Driving implements Utilities, Timer, Runnable{
 		for(Timer element: allTimedElements) {
 			System.out.println(element);
 			element.incrementDrivingTime();
-			if (element instanceof Vehicle){
+			/*if (element instanceof Vehicle){
 				bigBrother.checkSpeeding((Vehicle) element);
 			}
+
+			 */
 			System.out.println();
 		}
 		
