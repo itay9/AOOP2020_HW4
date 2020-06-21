@@ -1,5 +1,7 @@
 package gui;
 
+import components.Vehicle;
+
 import javax.swing.*;
 
 import components.CityBuilder;
@@ -9,6 +11,7 @@ import components.Driving;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 public class Main extends JFrame implements ActionListener {
@@ -36,6 +39,7 @@ public class Main extends JFrame implements ActionListener {
 	    add(panel);
 	    panel.setVisible(true);
 
+
 		mb = new JMenuBar();
 		m1 = new JMenu("File");
 		m2 = new JMenu("Background");
@@ -46,9 +50,9 @@ public class Main extends JFrame implements ActionListener {
 //		m7 = new JMenu("Reports");
 		mi = new JMenuItem[names.length];
 
-		for(int i=0;i<names.length;i++) {
-		    mi[i]=new JMenuItem(names[i]);
-		    mi[i].addActionListener(this);
+		for (int i = 0; i < names.length; i++) {
+			mi[i] = new JMenuItem(names[i]);
+			mi[i].addActionListener(this);
 		}
 
 		m1.add(mi[0]);
@@ -64,7 +68,7 @@ public class Main extends JFrame implements ActionListener {
 		m3.add(mi[5]);
 		m3.addSeparator();
 		m3.add(mi[6]);
-		
+
 		m4.add(mi[7]);
 		
 		m5.add(mi[8]);
@@ -77,6 +81,7 @@ public class Main extends JFrame implements ActionListener {
 //
 //		m7.addActionListener(this);
 
+
 		mb.add(m1);
 		mb.add(m2);
 		mb.add(m3);
@@ -87,26 +92,27 @@ public class Main extends JFrame implements ActionListener {
 //		mb.add(mi[8]).setPreferredSize(getSize());
 		mb.add(mi[10]).setPreferredSize(getSize());
 		mb.add(mi[11]).setPreferredSize(getSize());
+
 		setJMenuBar(mb);
-   }
-   
+	}
+
 
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == mi[0])
+		if (e.getSource() == mi[0])
 			destroy();
-		else if(e.getSource() == mi[1])
+		else if (e.getSource() == mi[1])
 			panel.setBackgr(1);
-		else if(e.getSource() == mi[2])
+		else if (e.getSource() == mi[2])
 			panel.setBackgr(0);
-		else if(e.getSource() == mi[3])
+		else if (e.getSource() == mi[3])
 			panel.setColorIndex(0);
-		else if(e.getSource() == mi[4])
+		else if (e.getSource() == mi[4])
 			panel.setColorIndex(1);
-		else if(e.getSource() == mi[5])
+		else if (e.getSource() == mi[5])
 			panel.setColorIndex(2);
-		else if(e.getSource() == mi[6])
+		else if (e.getSource() == mi[6])
 			panel.setColorIndex(3);
-		else if(e.getSource() == mi[7])
+		else if (e.getSource() == mi[7])
 			printHelp();
 		else if(e.getSource() == mi[8])
 			cityMap();
@@ -116,7 +122,9 @@ public class Main extends JFrame implements ActionListener {
 			CloneCar();
 		else if(e.getSource() == mi[11])
 			Reports();
+
 	}
+
 	
 	
 	private void countryMap() {
@@ -144,28 +152,39 @@ public class Main extends JFrame implements ActionListener {
 	}
 
 
+
 	public void destroy() {
 		System.exit(0);
 	}
-	
-	
+
+
 	public void printHelp() {
 		JOptionPane.showMessageDialog(this, "Home Work 3\nGUI @ Threads");
 	}
-	
+
 	public void BuildMap() {
 		//TODO: build a map button
 	}
-	
+
 	public void CloneCar() {
+
 		int id=0;
 		String str=JOptionPane.showInputDialog("Input car ID to clone:","0");
 		id=Integer.parseInt(str);
 		//TODO: clone a car button
 	}
 	
-	public void Reports() {
-		//TODO: report button
-	}
 
+	public void Reports() {
+		Runtime load = Runtime.getRuntime();
+		// todo String file = "C:\\Users\\Almog\\eclipse-workspace\\Roads\\report.txt";
+		//todo chen edit for your file
+		String fileName = "E:\\Programing\\GitHub\\AOOP2020_HW4\\reports.txt";
+		try {
+			Process p = load.exec("notepad " + fileName);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 }

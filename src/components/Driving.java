@@ -210,4 +210,12 @@ public class Driving implements Utilities, Timer, Runnable{
 	public void setCityBuilder(CityBuilder cityBuilder) {
 		this.cityBuilder = cityBuilder;
 	}
+
+	/**
+	 *
+	 * @param vehicle vehicle to add to the list
+	 */
+	public void addVehicle(Vehicle vehicle){
+		vehicles.add(vehicle);
+	}
 }

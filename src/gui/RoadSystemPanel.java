@@ -217,23 +217,24 @@ public class RoadSystemPanel extends JPanel implements ActionListener {
    }
 
 
-public Driving getDriving() {
-	return driving;
-}
+	public Driving getDriving() {
+		return driving;
+	}
+	
+	
+	public void setDriving(Driving driving) {
+		this.driving = driving;
+	}
+	
+	
+	public boolean isStarted() {
+		return started;
+	}
+	
+	
+	public void setStarted(boolean started) {
+		this.started = started;
+	}
 
-
-public void setDriving(Driving driving) {
-	this.driving = driving;
-}
-
-
-public boolean isStarted() {
-	return started;
-}
-
-
-public void setStarted(boolean started) {
-	this.started = started;
-}
 
 }
