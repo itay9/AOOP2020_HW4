@@ -323,7 +323,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	 * update speed for the vehicle to make sure the clone() method
 	 */
 	private void updateSpeed(){
-		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,6));
+		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,1.5));
 		speed = Math.abs(speed);
 	}
 
