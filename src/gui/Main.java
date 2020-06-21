@@ -133,8 +133,8 @@ public class Main extends JFrame implements ActionListener, Utilities {
 		int index;
 		String str=JOptionPane.showInputDialog("Input car ID to clone:");
 		index=Integer.parseInt(str);
-		if (index<0 || index>panel.getDriving().getVehicles().size()){ //make sure index is in boundaries
-			index=0;
+		if (index<1 || index>panel.getDriving().getVehicles().size()){ //make sure index is in boundaries
+			index=1;
 		}
 		Vehicle vehicle = panel.getDriving().getVehicles().get(index-1).clone();
 		panel.getDriving().addVehicle(vehicle); // adding to list of vehivles
@@ -143,7 +143,7 @@ public class Main extends JFrame implements ActionListener, Utilities {
 
 	public void Reports() {
 		Runtime load = Runtime.getRuntime();
-		// todo String file = "C:\\Users\\Almog\\eclipse-workspace\\Roads\\report.txt";
+		// todo String file = "C:\\Users\\Chen\\eclipse-workspace\\Roads\\report.txt";
 		//todo chen edit for your file
 		String fileName = "E:\\Programing\\GitHub\\AOOP2020_HW4\\reports.txt";
 		try {

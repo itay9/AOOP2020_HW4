@@ -2,6 +2,8 @@ package components;
 
 import utilities.Utilities;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 public class BigBrother implements Utilities {
@@ -24,21 +26,23 @@ public class BigBrother implements Utilities {
         return instance;
 
     }
-    public void checkSpeeding(Vehicle vehicle){
+    public void checkSpeeding(Vehicle vehicle) {
         RouteParts routePart = vehicle.getCurrentRoutePart();
         //System.out.println(" speedeing 1");
-        if (routePart instanceof Road){
+        if (routePart instanceof Road) {
             //System.out.println(" speedeing 2");
             int maxSpeed = ((Road) routePart).getMaxSpeed();
             //System.out.println(" speedeing 3");
-            if (vehicle.getSpeed()>maxSpeed){
+            if (vehicle.getSpeed() > maxSpeed) {
                 System.out.println(" speedeing 4");
                 moked.giveReport(vehicle);
                 System.out.println(" speedeing 5 OK ");
-          //  }
+                //  }
+            }
         }
     }
 
+    /*
     public static void main(String[] args) {
         Road r= new Road(new Junction(), new Junction());
         Vehicle v1 = new Vehicle(r);
@@ -52,6 +56,8 @@ public class BigBrother implements Utilities {
         brother.checkSpeeding(v2);
 
     }
+
+     */
 
 
 }
