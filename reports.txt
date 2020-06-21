@@ -1,5 +1,0 @@
-time: 38, vehicle number: 3, #1
-time: 77, vehicle number: 3, #2
-time: 38, vehicle number: 20, #3
-time: 91, vehicle number: 9, #4
-time: 91, vehicle number: 10, #5

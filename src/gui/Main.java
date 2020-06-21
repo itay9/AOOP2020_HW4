@@ -147,6 +147,10 @@ public class Main extends JFrame implements ActionListener, Utilities {
 		panel.setDriving(new Driving(new CityBuilder()));
 		panel.getDriving().setPanel(panel); 
 		panel.setStarted(false);
+
+		for (Vehicle veh : panel.getDriving().getVehicles()){
+			veh.updateSpeed30(); //update speed 30%
+		}
 		repaint();
 		// TODO Auto-generated method stub
 		
