@@ -14,10 +14,11 @@ public class CityBuilder implements Utilities{
 	public static final int NUMOFJUNC=12;
 	public static final String CITY="city";
 	public static final int[] WHEELS= {2,4,10};
-	public static final String[] TYPE= {"fast","slow","private","work","public"};
-
+	public static final String[][] TYPE= {{"fast","slow"},{"private","public"},{"public"}};;
+	public static final int NUMOFVEHICLES=6;
 	
-	public CityBuilder(int numOfVehicles) {
+	public CityBuilder() {
+		vehicles=new ArrayList<Vehicle>();
 		junctions=new ArrayList<Junction>();
 		roads=new ArrayList<Road>();
 		lights=new ArrayList<TrafficLights>();
@@ -28,15 +29,16 @@ public class CityBuilder implements Utilities{
 		setAllRoads();
 		turnLightsOn();
 		System.out.println("\n================= CREATING VEHICLES =================");
-		while(vehicles.size()<numOfVehicles) {
+		for(int i=0;i<NUMOFVEHICLES;i++) {
 			Road temp=getRoads().get(getRandomInt(0,getRoads().size()));//random road from the map
 			if( temp.getEnabled()) {
-				int numOfWheels=WHEELS[getRandomInt(0,WHEELS.length)];
-				String type=TYPE[getRandomInt(0,TYPE.length)];
-				while (type==null || type=="work")
-					type=TYPE[getRandomInt(0,TYPE.length)];
-				vehicles.add(factory.getFactory(numOfWheels).getVehicle(type));
-//				vehicles.add(new Vehicle(temp));
+				int ind=getRandomInt(0,WHEELS.length);
+				int numOfWheels=WHEELS[ind];
+				String type=TYPE[ind][getRandomInt(0,TYPE[ind].length)];
+				Vehicle vehicle=factory.getFactory(numOfWheels).getVehicle(type);
+				vehicle.setCurrentRoute(new Route(temp, vehicle));
+				vehicle.setCurrentRoutePart(temp);
+				getVehicles().add(vehicle);
 			}
 
 		}
@@ -102,6 +104,12 @@ public class CityBuilder implements Utilities{
 	 */
 	public void setLights(ArrayList<TrafficLights> lights) {
 		this.lights = lights;
+	}
+	public ArrayList<Vehicle> getVehicles() {
+		return vehicles;
+	}
+	public void setVehicles(ArrayList<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 }
