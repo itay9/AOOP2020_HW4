@@ -330,7 +330,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
     /**
      * same as normal method but for special condition with 30%
      */
-	private void updateSpeed30(){
+	public void updateSpeed30(){
         speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,1.3));
     }
 
