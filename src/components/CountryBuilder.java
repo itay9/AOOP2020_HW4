@@ -41,7 +41,7 @@ public class CountryBuilder implements Utilities{
 
 		}
 	}
-	public void turnLightsOn() {
+	public void turnLightsOn(){
 		System.out.println("\n================= TRAFFIC LIGHTS TURN ON =================");
 
 		for (Junction junction: junctions) {
