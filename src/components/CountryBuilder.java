@@ -14,12 +14,16 @@ public class CountryBuilder implements Utilities{
 	public static final int NUMOFJUNC=6;
 	public static final String COUNTRY="country";
 	public static final int[] WHEELS= {2,4,10};
-	public static final String[] TYPE= {"fast","slow","private","work","public"};
+	public static final String[][] TYPE= {{"fast"},{"private","work","public"},{"work"}};
+	public static final int NUMOFVEHICLES=6;
 
-	public CountryBuilder(int numOfVehicles) {
-		junctions = new ArrayList<Junction>();
-		roads = new ArrayList<Road>();
-		lights = new ArrayList<TrafficLights>();
+
+	public CountryBuilder() {
+		vehicles=new ArrayList<Vehicle>();
+		junctions=new ArrayList<Junction>();
+		roads=new ArrayList<Road>();
+		lights=new ArrayList<TrafficLights>();
+
 		System.out.println("\n================= CREATING JUNCTIONS=================");
 		for (int i = 0; i < NUMOFJUNC; i++) {
 			junctions.add(jFactory.getJunction(COUNTRY));
@@ -27,19 +31,24 @@ public class CountryBuilder implements Utilities{
 		setAllRoads();
 		turnLightsOn();
 		System.out.println("\n================= CREATING VEHICLES =================");
-		while (vehicles.size() < numOfVehicles) {
-			Road temp = getRoads().get(getRandomInt(0, getRoads().size()));//random road from the map
-			if (temp.getEnabled()) {
-				int numOfWheels = WHEELS[getRandomInt(0, WHEELS.length)];
-				String type = TYPE[getRandomInt(0, TYPE.length)];
-				while (type == null || type == "slow" || (numOfWheels == 10 && type == "public"))
-					type = TYPE[getRandomInt(0, TYPE.length)];
-				vehicles.add(factory.getFactory(numOfWheels).getVehicle(type));
-//				vehicles.add(new Vehicle(temp));
-			}
-			System.out.println("\n================= GAME MAP HAS BEEN CREATED =================\n");
 
+//		while(getVehicles()==null || getVehicles().size()<NUMOFVEHICLES) {
+		for(int i=0;i<NUMOFVEHICLES;i++) {
+			Road temp=getRoads().get(getRandomInt(0,getRoads().size()));//random road from the map
+			if( temp.getEnabled()) {
+				int ind=getRandomInt(0,WHEELS.length);
+				int numOfWheels=WHEELS[ind];
+				String type=TYPE[ind][getRandomInt(0,TYPE[ind].length)];
+				Vehicle vehicle=factory.getFactory(numOfWheels).getVehicle(type);
+				vehicle.setCurrentRoute(new Route(temp, vehicle));
+				vehicle.setCurrentRoutePart(temp);
+				getVehicles().add(vehicle);
+
+			}
 		}
+		System.out.println("\n================= GAME MAP HAS BEEN CREATED =================\n");
+	
+
 	}
 	public void turnLightsOn(){
 		System.out.println("\n================= TRAFFIC LIGHTS TURN ON =================");
@@ -101,6 +110,12 @@ public class CountryBuilder implements Utilities{
 	 */
 	public void setLights(ArrayList<TrafficLights> lights) {
 		this.lights = lights;
+	}
+	public ArrayList<Vehicle> getVehicles() {
+		return vehicles;
+	}
+	public void setVehicles(ArrayList<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 }

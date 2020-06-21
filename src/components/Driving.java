@@ -16,6 +16,8 @@ import utilities.Utilities;
  */
 public class Driving implements Utilities, Timer, Runnable{
 	private Map map;
+	private CountryBuilder countryBuilder;
+	private CityBuilder cityBuilder;
 	private ArrayList<Vehicle> vehicles;
 	private int drivingTime;
 	private ArrayList<Timer> allTimedElements;
@@ -39,7 +41,30 @@ public class Driving implements Utilities, Timer, Runnable{
 		allTimedElements.addAll(map.getLights());
 		Vehicle.objectsCount=1;
 	}
+	public Driving(CountryBuilder countryBuilder) {
+		cityBuilder=null;
+		this.setCountryBuilder(countryBuilder);
+		vehicles=countryBuilder.getVehicles();
+		allTimedElements=new ArrayList<Timer>();
+		drivingTime=0;
+//		map=new Map(junctionsNum);
+		
+		allTimedElements.addAll(vehicles);
+		allTimedElements.addAll(countryBuilder.getLights());
+	}
 	
+	
+	public Driving(CityBuilder cityBuilder) {
+		countryBuilder=null;
+		this.setCityBuilder(cityBuilder);
+		vehicles=cityBuilder.getVehicles();
+		allTimedElements=new ArrayList<Timer>();
+		drivingTime=0;
+//		map=new Map(junctionsNum);
+		
+		allTimedElements.addAll(vehicles);
+		allTimedElements.addAll(cityBuilder.getLights());
+	}
 	
 	public void setPanel(JPanel panel) {
 		this.panel = panel;
@@ -178,6 +203,18 @@ public class Driving implements Utilities, Timer, Runnable{
 	   	for(Timer timer: allTimedElements) 
 	   		timer.setStop();
 	   	stop = true;
+	}
+	public CountryBuilder getCountryBuilder() {
+		return countryBuilder;
+	}
+	public void setCountryBuilder(CountryBuilder countryBuilder) {
+		this.countryBuilder = countryBuilder;
+	}
+	public CityBuilder getCityBuilder() {
+		return cityBuilder;
+	}
+	public void setCityBuilder(CityBuilder cityBuilder) {
+		this.cityBuilder = cityBuilder;
 	}
 
 	/**
