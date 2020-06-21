@@ -205,7 +205,9 @@ public class RoadSystemPanel extends JPanel implements ActionListener {
    
    public void actionPerformed(ActionEvent e) {
 	if(e.getSource() == b_num[0]) 
-		add();
+		JOptionPane.showMessageDialog(this, "This option not available!");
+//		add();
+		
 	else if(e.getSource() == b_num[1]) 
 		start();
 	else if(e.getSource() == b_num[2])  
