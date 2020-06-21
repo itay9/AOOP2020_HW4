@@ -170,7 +170,7 @@ public class Main extends JFrame implements ActionListener, Utilities {
 	public void CloneCar() {
 
 		int index;
-		String str=JOptionPane.showInputDialog("Input car ID to clone:");
+		String str=JOptionPane.showInputDialog("Input car ID to clone:","0");
 		index=Integer.parseInt(str);
 		if (index<0 || index>panel.getDriving().getVehicles().size()-1){ //make sure index is in boundaries
 			System.out.println("Error! invalid index! cloning thr first car");
