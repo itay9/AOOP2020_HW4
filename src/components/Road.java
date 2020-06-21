@@ -21,7 +21,7 @@ public class Road implements RouteParts{
 	VehicleType [] vehicleTypes;
 	double length;
 	boolean enable;
-	BigBrother bigBrother = new BigBrother();
+	private BigBrother bigBrother  = BigBrother.getBigBrotherInst();
 
 	
 	public Road(Junction start, Junction end) {

@@ -17,18 +17,21 @@ public class CountryBuilder implements Utilities{
 	public static final String[][] TYPE= {{"fast"},{"private","work","public"},{"work"}};
 	public static final int NUMOFVEHICLES=6;
 
+
 	public CountryBuilder() {
 		vehicles=new ArrayList<Vehicle>();
 		junctions=new ArrayList<Junction>();
 		roads=new ArrayList<Road>();
 		lights=new ArrayList<TrafficLights>();
+
 		System.out.println("\n================= CREATING JUNCTIONS=================");
-		for (int i=0; i<NUMOFJUNC; i++) {
+		for (int i = 0; i < NUMOFJUNC; i++) {
 			junctions.add(jFactory.getJunction(COUNTRY));
 		}
 		setAllRoads();
 		turnLightsOn();
 		System.out.println("\n================= CREATING VEHICLES =================");
+
 //		while(getVehicles()==null || getVehicles().size()<NUMOFVEHICLES) {
 		for(int i=0;i<NUMOFVEHICLES;i++) {
 			Road temp=getRoads().get(getRandomInt(0,getRoads().size()));//random road from the map
@@ -45,8 +48,9 @@ public class CountryBuilder implements Utilities{
 		}
 		System.out.println("\n================= GAME MAP HAS BEEN CREATED =================\n");
 	
+
 	}
-	public void turnLightsOn() {
+	public void turnLightsOn(){
 		System.out.println("\n================= TRAFFIC LIGHTS TURN ON =================");
 
 		for (Junction junction: junctions) {

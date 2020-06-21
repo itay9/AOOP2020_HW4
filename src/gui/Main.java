@@ -1,6 +1,7 @@
 package gui;
 
 import components.Vehicle;
+import utilities.Utilities;
 
 import javax.swing.*;
 
@@ -14,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
-public class Main extends JFrame implements ActionListener {
+public class Main extends JFrame implements ActionListener, Utilities {
    private static final long serialVersionUID = 1L;
    private RoadSystemPanel panel;
    private String[] names = {"Exit","Blue","None","Blue","Magenta","Orange", "Random","Help","City map","Country map","Clone a car","Reports"};
@@ -168,17 +169,25 @@ public class Main extends JFrame implements ActionListener {
 
 	public void CloneCar() {
 
-		int id=0;
-		String str=JOptionPane.showInputDialog("Input car ID to clone:","0");
-		id=Integer.parseInt(str);
-		//TODO: clone a car button
+		int index;
+		String str=JOptionPane.showInputDialog("Input car ID to clone:");
+		index=Integer.parseInt(str);
+		if (index<0 || index>panel.getDriving().getVehicles().size()-1){ //make sure index is in boundaries
+			System.out.println("Error! invalid index! cloning thr first car");
+			index=0;
+		}
+		Vehicle vehicle = panel.getDriving().getVehicles().get(index).clone();
+		panel.getDriving().addVehicle(vehicle); // adding to list of vehivles
+		//fixing clone car not moving
+		Thread thread = new Thread(vehicle);
+		thread.start();
+
 	}
 	
 
 	public void Reports() {
 		Runtime load = Runtime.getRuntime();
-		// todo String file = "C:\\Users\\Almog\\eclipse-workspace\\Roads\\report.txt";
-		//todo chen edit for your file
+
 		String fileName = "E:\\Programing\\GitHub\\AOOP2020_HW4\\reports.txt";
 		try {
 			Process p = load.exec("notepad " + fileName);

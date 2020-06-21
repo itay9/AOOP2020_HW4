@@ -5,11 +5,17 @@ package components;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 import utilities.Point;
 import utilities.Timer;
 import utilities.Utilities;
 import utilities.VehicleType;
+
+import javax.swing.event.ChangeListener;
+
+import static com.sun.java.accessibility.util.SwingEventMonitor.addChangeListener;
 
 
 public class Vehicle extends Point implements Utilities, Timer, Runnable { 
@@ -27,29 +33,32 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	private boolean stop = false;
 	private BigBrother bigBrother;
 	private int speed;
+	private ArrayList<PropertyChangeListener> listener = new ArrayList<PropertyChangeListener>();
 	
 	public Vehicle (Road currentLocation) {// random constructor
 		id=objectsCount++;
 		vehicleType=currentLocation.getVehicleTypes()[getRandomInt(0,currentLocation.getVehicleTypes().length-1)];
 		System.out.println();
-		successMessage(this.toString());
 		currentRoute=new Route(currentLocation, this); //creates a new route for the vehicle and checks it in
 		lastRoad=currentLocation;
 		status=null;
 		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
 		bigBrother = BigBrother.getBigBrotherInst();
-		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.5));
+		updateSpeed();
+//		addChangeListener((PropertyChangeListener) BigBrother.getBigBrotherInst());
+		successMessage(this.toString());
 	}
 	public Vehicle (VehicleType vehicleType) {// random constructor
 		id=objectsCount++;
 		this.vehicleType=vehicleType;
 		System.out.println();
-		successMessage(this.toString());
 //		currentRoute=new Route(currentLocation, this); //creates a new route for the vehicle and checks it in
 //		lastRoad=currentLocation;
 		status=null;
 		color = new Color((int)(Math.random()*200),(int)(Math.random()*200),(int)(Math.random()*200));
 		bigBrother = BigBrother.getBigBrotherInst();
+		updateSpeed();
+		successMessage(this.toString());
 	}
 	
 	public void calcPositionOnRoad() {
@@ -155,7 +164,7 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	
 	@Override
 	public String toString() {
-		return new String("Vehicle "+id+": "+ getVehicleType().name()+", average speed: "+getVehicleType().getAverageSpeed());
+		return new String("Vehicle "+id+": "+ getVehicleType().name()+", speed: "+getSpeed());
 	}
 	
 	@Override
@@ -303,23 +312,29 @@ public class Vehicle extends Point implements Utilities, Timer, Runnable {
 	 */
 	@Override
 	public Vehicle clone(){
-		Vehicle cloneVehivle = new Vehicle(this.getLastRoad());
-		cloneVehivle.setVehicleType(this.getVehicleType());
-		cloneVehivle.updateSpeed();
-		return cloneVehivle;
+		Vehicle cloneVehicle = new Vehicle(this.getLastRoad());
+		cloneVehicle.setVehicleType(this.getVehicleType());
+		cloneVehicle.updateSpeed();
+		System.out.println("Vehicle "+this.getID() + ", Type: "+this.getVehicleType().name()+"  has been cloned");
+		return cloneVehicle;
 	}
 
 	/**
 	 * update speed for the vehicle to make sure the clone() method
 	 */
 	private void updateSpeed(){
-		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.5));
+		speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,6));
+		speed = Math.abs(speed);
 	}
 
     /**
-     * same as normal method but for special condition
+     * same as normal method but for special condition with 30%
      */
 	private void updateSpeed30(){
-        speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.6,1.3));
+        speed = (int)(getVehicleType().getAverageSpeed()*getRandomDouble(0.95,1.3));
     }
+
+	public void addChangeListener(PropertyChangeListener newListener) {
+		listener.add(newListener);
+	}
 }
