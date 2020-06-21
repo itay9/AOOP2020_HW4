@@ -188,7 +188,7 @@ public class Main extends JFrame implements ActionListener, Utilities {
 	public void Reports() {
 		Runtime load = Runtime.getRuntime();
 
-		String fileName = "E:\\Programing\\GitHub\\AOOP2020_HW4\\reports.txt";
+		String fileName = "reports.txt";
 		try {
 			Process p = load.exec("notepad " + fileName);
 		} catch (IOException e1) {
