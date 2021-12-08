@@ -5,7 +5,8 @@ package utilities;
 import java.util.ArrayList;
 import java.util.Random;
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public interface Utilities {

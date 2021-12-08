@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import utilities.Utilities;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class Map implements Utilities {

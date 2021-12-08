@@ -6,7 +6,8 @@ package bonus;
 import components.Vehicle;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class Driver implements utilities.Utilities{

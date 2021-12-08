@@ -12,7 +12,8 @@ import utilities.VehicleType;
 
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class Junction extends utilities.Point implements RouteParts {

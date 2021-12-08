@@ -10,7 +10,8 @@ import components.RouteParts;
 import components.Vehicle;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class CriminalDriver extends Driver {

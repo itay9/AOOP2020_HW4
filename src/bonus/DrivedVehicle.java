@@ -6,7 +6,8 @@ package bonus;
 import components.Road;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class DrivedVehicle extends components.Vehicle {

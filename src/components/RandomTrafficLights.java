@@ -5,7 +5,8 @@ package components;
 import java.util.ArrayList;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class RandomTrafficLights extends TrafficLights {

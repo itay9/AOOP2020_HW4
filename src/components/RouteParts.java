@@ -7,7 +7,8 @@ import utilities.Utilities;
 
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public interface RouteParts extends Utilities {

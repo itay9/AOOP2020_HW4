@@ -9,7 +9,8 @@ import components.Road;
 import components.Vehicle;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class Test {

@@ -181,7 +181,7 @@ public class Main extends JFrame implements ActionListener, Utilities {
 			index=0;
 		}
 		Vehicle vehicle = panel.getDriving().getVehicles().get(index).clone();
-		panel.getDriving().addVehicle(vehicle); // adding to list of vehivles
+		panel.getDriving().addVehicle(vehicle); // adding to list of vehicles
 		//fixing clone car not moving
 		Thread thread = new Thread(vehicle);
 		thread.start();

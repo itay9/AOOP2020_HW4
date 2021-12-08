@@ -4,7 +4,8 @@
 package utilities;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public interface Timer {

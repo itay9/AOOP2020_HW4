@@ -7,7 +7,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class LightedJunction extends Junction {

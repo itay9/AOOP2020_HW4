@@ -6,7 +6,8 @@ package bonus;
 
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class BonusGameDriver  {

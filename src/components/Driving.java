@@ -11,7 +11,8 @@ import utilities.Timer;
 import utilities.Utilities;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class Driving implements Utilities, Timer, Runnable{

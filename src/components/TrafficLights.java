@@ -9,7 +9,8 @@ import utilities.Timer;
 import utilities.Utilities;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public abstract class TrafficLights  implements Timer, Utilities, Runnable{

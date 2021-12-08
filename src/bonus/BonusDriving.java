@@ -7,7 +7,8 @@ import components.Driving;
 import components.Road;
 
 /**
- * @author krsof
+ * @author itay Dali
+ * @author Chen Azulay
  *
  */
 public class BonusDriving extends Driving {

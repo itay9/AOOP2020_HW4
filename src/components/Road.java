@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 import utilities.VehicleType;
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class Road implements RouteParts{

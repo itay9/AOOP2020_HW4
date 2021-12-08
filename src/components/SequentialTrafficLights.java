@@ -6,7 +6,8 @@ package components;
 import java.util.ArrayList;
 
 /**
- * @author krsof
+ * @author itay Dali
+* @author Chen Azulay
  *
  */
 public class SequentialTrafficLights extends TrafficLights {
